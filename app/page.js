@@ -28,7 +28,9 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    filterCountries()
+    if (countries.length > 0) {
+      filterCountries()
+    }
   }, [countries, selectedRegion])
 
   const loadCountries = async () => {
@@ -42,22 +44,25 @@ export default function Home() {
         .sort((a, b) => (gdpData[b.cca3] || 0) - (gdpData[a.cca3] || 0))
         .slice(0, 4)
       setFeaturedCountries(featured)
+      setLoading(false)
     } catch (error) {
       console.error('Error loading countries:', error)
-    } finally {
       setLoading(false)
     }
   }
 
   const filterCountries = () => {
+    if (countries.length === 0) return
+    
     let filtered = [...countries]
     
     if (selectedRegion !== 'All Regions') {
       filtered = filtered.filter(country => country.region === selectedRegion)
     }
     
-    filtered.sort((a, b) => (gdpData[b.cca3] || 0) - (gdpData[a.cca3] || 0))
-    setFeaturedCountries(filtered.slice(0, 4))
+    const withGDP = filtered.filter(c => gdpData[c.cca3])
+    withGDP.sort((a, b) => (gdpData[b.cca3] || 0) - (gdpData[a.cca3] || 0))
+    setFeaturedCountries(withGDP.slice(0, 4))
   }
 
   const handleSearch = (e) => {
@@ -139,7 +144,7 @@ export default function Home() {
               <div key={i} className="h-64 bg-white dark:bg-gray-800 rounded-2xl animate-pulse"></div>
             ))}
           </div>
-        ) : (
+        ) : featuredCountries.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredCountries.map((country, index) => (
               <motion.div
@@ -192,6 +197,12 @@ export default function Home() {
                 </Link>
               </motion.div>
             ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-gray-600 dark:text-gray-400 text-lg">
+              No countries found for this region. Try selecting "All Regions".
+            </p>
           </div>
         )}
 
