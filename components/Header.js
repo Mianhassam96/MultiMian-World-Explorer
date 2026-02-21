@@ -21,7 +21,7 @@ export default function Header() {
   ]
   
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-gradient-to-r from-blue-600/90 via-purple-600/90 to-pink-600/90 border-b border-white/20 shadow-lg">
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-gradient-to-r from-gray-900 via-green-900 to-blue-900 border-b border-green-500/20 shadow-lg">
       <nav className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Animated Logo */}
@@ -37,7 +37,8 @@ export default function Header() {
               <motion.span 
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="text-2xl font-black text-white tracking-tight"
+                className="text-2xl font-black bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent"
+                style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
               >
                 MultiMian
               </motion.span>
@@ -65,7 +66,7 @@ export default function Header() {
                   href={link.href}
                   className={`relative px-4 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 ${
                     pathname === link.href
-                      ? 'bg-white/20 text-white shadow-lg'
+                      ? 'bg-gradient-to-r from-green-600 to-blue-600 text-white shadow-lg'
                       : 'text-white/80 hover:bg-white/10 hover:text-white'
                   }`}
                 >

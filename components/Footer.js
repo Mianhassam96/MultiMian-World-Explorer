@@ -6,54 +6,76 @@ import { motion } from 'framer-motion'
 export default function Footer() {
   const currentYear = new Date().getFullYear()
   
-  const footerLinks = {
-    explore: [
-      { label: 'All Countries', href: '/' },
-      { label: 'Favorites', href: '/favorites' },
-      { label: 'Compare', href: '/compare' },
-      { label: 'World Map', href: '/map' },
-    ],
-    resources: [
-      { label: 'REST Countries API', href: 'https://restcountries.com', external: true },
-      { label: 'World Bank API', href: 'https://data.worldbank.org', external: true },
-      { label: 'GitHub Repository', href: 'https://github.com/Mianhassam96/MultiMian-World-Explorer', external: true },
-    ],
-    social: [
-      { label: 'GitHub', href: 'https://github.com/Mianhassam96', external: true, icon: '💻' },
-      { label: 'LinkedIn', href: '#', external: true, icon: '💼' },
-      { label: 'Twitter', href: '#', external: true, icon: '🐦' },
-    ]
-  }
-  
+  const links = [
+    { href: '/', label: 'Home' },
+    { href: '/explore', label: 'Explore' },
+    { href: '/favorites', label: 'Favorites' },
+    { href: '/compare', label: 'Compare' },
+    { href: '/map', label: 'World Map' },
+    { href: '/statistics', label: 'Statistics' },
+    { href: '/about', label: 'About' },
+  ]
+
+  const socialLinks = [
+    { href: 'https://github.com/Mianhassam96', icon: '💻', label: 'GitHub' },
+    { href: 'mailto:mianhassam96@gmail.com', icon: '📧', label: 'Email' },
+  ]
+
   return (
-    <footer className="mt-20 border-t border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 backdrop-blur-lg">
+    <footer className="bg-gradient-to-r from-gray-900 via-green-900 to-blue-900 text-white mt-20">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand Section */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <span className="text-3xl">🌍</span>
+          <div className="md:col-span-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center space-x-3 mb-4"
+            >
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="text-4xl"
+              >
+                🌍
+              </motion.div>
               <div>
-                <h3 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h3 className="text-2xl font-black bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
                   MultiMian
                 </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400">World Explorer</p>
+                <p className="text-sm text-gray-300">World Explorer</p>
               </div>
-            </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Explore detailed information about countries worldwide with real-time GDP data and interactive visualizations.
+            </motion.div>
+            <p className="text-gray-300 mb-4 max-w-md">
+              Explore comprehensive information about every country in the world. 
+              Discover facts, statistics, and insights about nations worldwide.
             </p>
+            <div className="flex space-x-4">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-all"
+                >
+                  <span className="text-xl">{link.icon}</span>
+                  <span className="text-sm">{link.label}</span>
+                </a>
+              ))}
+            </div>
           </div>
-          
-          {/* Explore Links */}
+
+          {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Explore</h4>
+            <h4 className="text-lg font-bold mb-4 text-green-400">Quick Links</h4>
             <ul className="space-y-2">
-              {footerLinks.explore.map((link) => (
+              {links.slice(0, 4).map((link) => (
                 <li key={link.href}>
-                  <Link 
+                  <Link
                     href={link.href}
-                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="text-gray-300 hover:text-green-400 transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -61,84 +83,54 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          
-          {/* Resources Links */}
+
+          {/* More Links */}
           <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Resources</h4>
+            <h4 className="text-lg font-bold mb-4 text-blue-400">More</h4>
             <ul className="space-y-2">
-              {footerLinks.resources.map((link) => (
+              {links.slice(4).map((link) => (
                 <li key={link.href}>
-                  <a 
+                  <Link
                     href={link.href}
-                    target={link.external ? "_blank" : undefined}
-                    rel={link.external ? "noopener noreferrer" : undefined}
-                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="text-gray-300 hover:text-blue-400 transition-colors"
                   >
-                    {link.label} {link.external && '↗'}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          {/* Social Links */}
-          <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Connect</h4>
-            <ul className="space-y-2">
-              {footerLinks.social.map((link) => (
-                <li key={link.href}>
-                  <a 
-                    href={link.href}
-                    target={link.external ? "_blank" : undefined}
-                    rel={link.external ? "noopener noreferrer" : undefined}
-                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center space-x-2"
-                  >
-                    <span>{link.icon}</span>
-                    <span>{link.label}</span>
-                  </a>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        
+
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-gray-200 dark:border-gray-700">
+        <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">
-              <p>© {currentYear} MultiMian World Explorer. All rights reserved.</p>
-              <p className="text-xs mt-1">
-                Built with ❤️ by <span className="font-semibold text-blue-600 dark:text-blue-400">MultiMian</span>
+            <div className="text-center md:text-left">
+              <p className="text-gray-300">
+                © {currentYear} <span className="font-bold text-green-400">MultiMian World Explorer</span>. All rights reserved.
+              </p>
+              <p className="text-sm text-gray-400 mt-1">
+                Created by <span className="font-semibold text-blue-400">Mian Hassan</span> | Data powered by REST Countries API
               </p>
             </div>
-            
-            <div className="flex items-center space-x-6 text-sm">
-              <Link 
-                href="/privacy" 
-                className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            <div className="flex items-center space-x-4">
+              <a
+                href="https://restcountries.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-gray-400 hover:text-green-400 transition-colors"
               >
-                Privacy Policy
-              </Link>
-              <Link 
-                href="/terms" 
-                className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                API Source
+              </a>
+              <span className="text-gray-600">•</span>
+              <Link
+                href="/about"
+                className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
               >
-                Terms of Service
+                About Us
               </Link>
             </div>
           </div>
-          
-          {/* Tech Stack Badge */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="mt-6 text-center"
-          >
-            <p className="text-xs text-gray-500 dark:text-gray-500">
-              Powered by Next.js • React • Tailwind CSS • REST Countries API • World Bank API
-            </p>
-          </motion.div>
         </div>
       </div>
     </footer>

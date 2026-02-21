@@ -6,6 +6,7 @@ import SearchBar from '@/components/SearchBar'
 import FilterPanel from '@/components/FilterPanel'
 import CountryCard from '@/components/CountryCard'
 import SkeletonCard from '@/components/SkeletonCard'
+import Footer from '@/components/Footer'
 import { fetchAllCountries } from '@/lib/api'
 
 export default function ExplorePage() {
@@ -92,62 +93,65 @@ export default function ExplorePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="container mx-auto px-4 py-8">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Explore All Countries
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300 text-lg">
-            Discover detailed information about {countries.length} countries worldwide
-          </p>
-        </motion.div>
+    <>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-blue-50 dark:from-black dark:via-gray-900 dark:to-gray-800">
+        <div className="container mx-auto px-4 py-8">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-12"
+          >
+            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              Explore All Countries
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300 text-lg">
+              Discover detailed information about {countries.length} countries worldwide
+            </p>
+          </motion.div>
 
-        <div className="mb-8">
-          <SearchBar 
-            value={searchQuery}
-            onChange={setSearchQuery}
-            countries={countries}
-          />
-        </div>
-
-        <div className="grid lg:grid-cols-4 gap-8 mb-8">
-          <div className="lg:col-span-1">
-            <FilterPanel
-              filters={filters}
-              setFilters={setFilters}
-              sortBy={sortBy}
-              setSortBy={setSortBy}
+          <div className="mb-8">
+            <SearchBar 
+              value={searchQuery}
+              onChange={setSearchQuery}
               countries={countries}
             />
           </div>
 
-          <div className="lg:col-span-3">
-            {loading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {[...Array(9)].map((_, i) => (
-                  <SkeletonCard key={i} />
-                ))}
-              </div>
-            ) : (
-              <>
-                <div className="mb-4 text-gray-600 dark:text-gray-300">
-                  Showing {filteredCountries.length} countries
-                </div>
+          <div className="grid lg:grid-cols-4 gap-8 mb-8">
+            <div className="lg:col-span-1">
+              <FilterPanel
+                filters={filters}
+                setFilters={setFilters}
+                sortBy={sortBy}
+                setSortBy={setSortBy}
+                countries={countries}
+              />
+            </div>
+
+            <div className="lg:col-span-3">
+              {loading ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {filteredCountries.map((country, index) => (
-                    <CountryCard key={country.cca3} country={country} index={index} />
+                  {[...Array(9)].map((_, i) => (
+                    <SkeletonCard key={i} />
                   ))}
                 </div>
-              </>
-            )}
+              ) : (
+                <>
+                  <div className="mb-4 text-gray-600 dark:text-gray-300">
+                    Showing {filteredCountries.length} countries
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    {filteredCountries.map((country, index) => (
+                      <CountryCard key={country.cca3} country={country} index={index} />
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   )
 }
