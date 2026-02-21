@@ -2,6 +2,14 @@
 
 An advanced, modern web application for exploring detailed information about countries worldwide using the REST Countries API.
 
+## 🌐 Live Demo
+
+**[View Live Application](https://mianhassam96.github.io/MultiMian-World-Explorer/)**
+
+## 📦 Repository
+
+**[GitHub Repository](https://github.com/Mianhassam96/MultiMian-World-Explorer)**
+
 ## Features
 
 ### Core Features
