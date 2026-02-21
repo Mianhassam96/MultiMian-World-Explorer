@@ -47,7 +47,7 @@ export default function AboutPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-blue-50 dark:from-black dark:via-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-16">
         {/* Hero Section */}
         <motion.div
@@ -55,7 +55,7 @@ export default function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-6xl font-black mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <h1 className="text-6xl font-black mb-6 bg-gradient-to-r from-green-600 via-blue-600 to-green-400 bg-clip-text text-transparent">
             About MultiMian
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -68,7 +68,7 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 mb-16 text-white"
+          className="bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl p-12 mb-16 text-white"
         >
           <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
           <p className="text-lg text-white/90">
@@ -136,7 +136,7 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-12 text-white text-center"
+          className="bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl p-12 text-white text-center"
         >
           <div className="text-6xl mb-4">👨‍💻</div>
           <h2 className="text-3xl font-bold mb-4">Created by Mian Hassan</h2>
@@ -150,7 +150,7 @@ export default function AboutPage() {
               href="https://github.com/Mianhassam96"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-white text-purple-600 rounded-xl font-semibold hover:shadow-lg transition-all"
+              className="px-6 py-3 bg-white text-green-600 rounded-xl font-semibold hover:shadow-lg transition-all"
             >
               GitHub Profile
             </a>
@@ -182,7 +182,7 @@ export default function AboutPage() {
             </a>
           </p>
           <Link href="/">
-            <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-semibold hover:shadow-xl transition-all">
+            <button className="px-8 py-4 bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-2xl font-semibold hover:shadow-xl transition-all">
               Start Exploring →
             </button>
           </Link>

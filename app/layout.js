@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider>
           <div className="flex flex-col min-h-screen">
             <Header />
-            <main className="flex-grow bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+            <main className="flex-grow">
               {children}
             </main>
             <Footer />
