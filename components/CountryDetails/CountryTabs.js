@@ -7,12 +7,14 @@ import GeographyTab from './GeographyTab'
 import CultureTab from './CultureTab'
 import BordersTab from './BordersTab'
 import StatisticsTab from './StatisticsTab'
+import EconomyTab from './EconomyTab'
 
 export default function CountryTabs({ country, borderCountries }) {
   const [activeTab, setActiveTab] = useState('overview')
   
   const tabs = [
     { id: 'overview', label: 'Overview', icon: '📋' },
+    { id: 'economy', label: 'Economy', icon: '💰' },
     { id: 'geography', label: 'Geography', icon: '🗺️' },
     { id: 'culture', label: 'Culture', icon: '🎭' },
     { id: 'borders', label: 'Borders', icon: '🔗' },
@@ -46,6 +48,7 @@ export default function CountryTabs({ country, borderCountries }) {
       
       <div className="p-8">
         {activeTab === 'overview' && <OverviewTab country={country} />}
+        {activeTab === 'economy' && <EconomyTab country={country} />}
         {activeTab === 'geography' && <GeographyTab country={country} />}
         {activeTab === 'culture' && <CultureTab country={country} />}
         {activeTab === 'borders' && <BordersTab country={country} borderCountries={borderCountries} />}
